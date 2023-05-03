@@ -22,7 +22,7 @@ namespace CrudProduto.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CrudProduto.Models.CategoriaModel", b =>
+            modelBuilder.Entity("CrudProduto.Models.Categoria", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace CrudProduto.Migrations
                     b.ToTable("Categoria");
                 });
 
-            modelBuilder.Entity("CrudProduto.Models.MarcaModel", b =>
+            modelBuilder.Entity("CrudProduto.Models.Marca", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace CrudProduto.Migrations
                     b.ToTable("Marca");
                 });
 
-            modelBuilder.Entity("CrudProduto.Models.ProdutoModel", b =>
+            modelBuilder.Entity("CrudProduto.Models.Produto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,18 +71,10 @@ namespace CrudProduto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CategoriaProdutoId")
+                    b.Property<int?>("CategoriaId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IdCategoria")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdMarca")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MarcaProdutoId")
+                    b.Property<int?>("MarcaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -101,36 +93,36 @@ namespace CrudProduto.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoriaProdutoId");
+                    b.HasIndex("CategoriaId");
 
-                    b.HasIndex("MarcaProdutoId");
+                    b.HasIndex("MarcaId");
 
                     b.ToTable("Produtos");
                 });
 
-            modelBuilder.Entity("CrudProduto.Models.ProdutoModel", b =>
+            modelBuilder.Entity("CrudProduto.Models.Produto", b =>
                 {
-                    b.HasOne("CrudProduto.Models.CategoriaModel", "CategoriaProduto")
-                        .WithMany("CategoriaProduto")
-                        .HasForeignKey("CategoriaProdutoId");
+                    b.HasOne("CrudProduto.Models.Categoria", "Categoria")
+                        .WithMany("Produtos")
+                        .HasForeignKey("CategoriaId");
 
-                    b.HasOne("CrudProduto.Models.MarcaModel", "MarcaProduto")
-                        .WithMany("MarcaProdutos")
-                        .HasForeignKey("MarcaProdutoId");
+                    b.HasOne("CrudProduto.Models.Marca", "Marca")
+                        .WithMany("Produtos")
+                        .HasForeignKey("MarcaId");
 
-                    b.Navigation("CategoriaProduto");
+                    b.Navigation("Categoria");
 
-                    b.Navigation("MarcaProduto");
+                    b.Navigation("Marca");
                 });
 
-            modelBuilder.Entity("CrudProduto.Models.CategoriaModel", b =>
+            modelBuilder.Entity("CrudProduto.Models.Categoria", b =>
                 {
-                    b.Navigation("CategoriaProduto");
+                    b.Navigation("Produtos");
                 });
 
-            modelBuilder.Entity("CrudProduto.Models.MarcaModel", b =>
+            modelBuilder.Entity("CrudProduto.Models.Marca", b =>
                 {
-                    b.Navigation("MarcaProdutos");
+                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,9 +11,9 @@ namespace CrudProduto.Data
         {
         }
          
-        public DbSet<ProdutoModel> Produtos { get; set; }
-        public DbSet<MarcaModel> Marca { get; set; }
-        public DbSet<CategoriaModel> Categoria { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Marca> Marca { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

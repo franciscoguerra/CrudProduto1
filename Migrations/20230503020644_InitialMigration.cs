@@ -5,7 +5,7 @@
 namespace CrudProduto.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDB : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -46,38 +46,36 @@ namespace CrudProduto.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Valor = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     Quantidade = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    IdMarca = table.Column<int>(type: "int", nullable: false),
-                    MarcaProdutoId = table.Column<int>(type: "int", nullable: true),
-                    IdCategoria = table.Column<int>(type: "int", nullable: false),
-                    CategoriaProdutoId = table.Column<int>(type: "int", nullable: true)
+                    MarcaId = table.Column<int>(type: "int", nullable: true),
+                    CategoriaId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Produtos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Produtos_Categoria_CategoriaProdutoId",
-                        column: x => x.CategoriaProdutoId,
+                        name: "FK_Produtos_Categoria_CategoriaId",
+                        column: x => x.CategoriaId,
                         principalTable: "Categoria",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Produtos_Marca_MarcaProdutoId",
-                        column: x => x.MarcaProdutoId,
+                        name: "FK_Produtos_Marca_MarcaId",
+                        column: x => x.MarcaId,
                         principalTable: "Marca",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produtos_CategoriaProdutoId",
+                name: "IX_Produtos_CategoriaId",
                 table: "Produtos",
-                column: "CategoriaProdutoId");
+                column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produtos_MarcaProdutoId",
+                name: "IX_Produtos_MarcaId",
                 table: "Produtos",
-                column: "MarcaProdutoId");
+                column: "MarcaId");
         }
 
         /// <inheritdoc />

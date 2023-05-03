@@ -13,16 +13,16 @@ namespace CrudProduto.Repositorios
             _dbContext = crudProdutoDbContext;
 
         }
-        public async Task<ProdutoModel> BuscarPorId(int id)
+        public async Task<Produto> BuscarPorId(int id)
         {
             return await _dbContext.Produtos.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<ProdutoModel>> BuscarTodosProdutos()
+        public async Task<List<Produto>> BuscarTodosProdutos()
         {
             return await _dbContext.Produtos.ToListAsync();
         }
-        public async Task<ProdutoModel> AdicionarProduto(ProdutoModel produto)
+        public async Task<Produto> AdicionarProduto(Produto produto)
         {
            await _dbContext.Produtos.AddAsync(produto);
            await _dbContext.SaveChangesAsync();
@@ -30,9 +30,9 @@ namespace CrudProduto.Repositorios
             return produto;
         }
 
-        public async Task<ProdutoModel> AtualizarProduto(ProdutoModel produto, int id)
+        public async Task<Produto> AtualizarProduto(Produto produto, int id)
         {
-            ProdutoModel produtoPorId = await BuscarPorId(id);
+            Produto produtoPorId = await BuscarPorId(id);
 
             if (produtoPorId == null)
             {
@@ -43,8 +43,8 @@ namespace CrudProduto.Repositorios
             produtoPorId.Valor = produto.Valor;
             produtoPorId.Quantidade= produto.Quantidade;
             produtoPorId.Status = produto.Status;
-            produtoPorId.CategoriaProdutoId = produto.CategoriaProdutoId;
-            produtoPorId.MarcaProdutoId = produto.MarcaProdutoId;
+            produtoPorId.CategoriaId = produto.CategoriaId;
+            produtoPorId.MarcaId = produto.MarcaId;
 
             
 
@@ -56,7 +56,7 @@ namespace CrudProduto.Repositorios
 
         public async Task<bool> ApagarProduto(int id)
         {
-            ProdutoModel buscarPorId = await BuscarPorId(id);
+            Produto buscarPorId = await BuscarPorId(id);
             if (buscarPorId == null)
             {
                 throw new Exception($"Produto não encontrado para esse ID:{id}");

@@ -15,23 +15,23 @@ namespace CrudProduto.Controllers
             _produtoRepositorio = produtoRepositorio;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ProdutoModel>>> BuscarTodosProdutos()
+        public async Task<ActionResult<List<Produto>>> BuscarTodosProdutos()
         {
-            List<ProdutoModel> produtos = await _produtoRepositorio.BuscarTodosProdutos();
+            List<Produto> produtos = await _produtoRepositorio.BuscarTodosProdutos();
             return Ok(produtos);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProdutoModel>> BuscarPorId(int id)
+        public async Task<ActionResult<Produto>> BuscarPorId(int id)
         {
-            ProdutoModel produto = await _produtoRepositorio.BuscarPorId(id);
+            Produto produto = await _produtoRepositorio.BuscarPorId(id);
             return Ok(produto);
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProdutoModel>> AdiconarProduto([FromBody] ProdutoModel produtoModel )
+        public async Task<ActionResult<Produto>> AdiconarProduto([FromBody] Produto model )
         {
-           ProdutoModel produto = await _produtoRepositorio.AdicionarProduto(produtoModel);
+           Produto produto = await _produtoRepositorio.AdicionarProduto(model);
             return Ok(produto);
         }
     }
