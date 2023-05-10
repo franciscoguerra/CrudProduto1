@@ -34,5 +34,20 @@ namespace CrudProduto.Controllers
            Produto produto = await _produtoRepositorio.AdicionarProduto(model);
             return Ok(produto);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Produto>> AtualizarProduto([FromBody] Produto produto, int id)
+        {
+            produto.Id = id;
+            Produto p = await _produtoRepositorio.AtualizarProduto(produto, id);
+            return Ok(p);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Produto>> ApagarProduto(int id)
+        {
+            bool apagado = await _produtoRepositorio.ApagarProduto(id);
+                return Ok(apagado);
+        }
     }
 }
