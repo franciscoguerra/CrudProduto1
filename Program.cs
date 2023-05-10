@@ -25,6 +25,7 @@ namespace CrudProduto
                 );
             builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
             builder.Services.AddScoped<IMarcaRepositorio, MarcaRepositorio>();
+            builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
 
             var app = builder.Build();
 

@@ -29,7 +29,7 @@ namespace CrudProduto.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Produto>> AdiconarProduto([FromBody] Produto model )
+        public async Task<ActionResult<Produto>> AdiconarProduto([FromBody] Produto model)
         {
            Produto produto = await _produtoRepositorio.AdicionarProduto(model);
             return Ok(produto);

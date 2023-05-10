@@ -17,7 +17,7 @@ namespace CrudProduto.Repositorios
         public async Task<Marca> BuscarMarcaId(int id)
         
         {
-            return await _dbContext.Marca.FirstOrDefaultAsync(x => x.Id==id);
+            return await _dbContext.Marca.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<List<Marca>> BuscarTodasMarcas()
